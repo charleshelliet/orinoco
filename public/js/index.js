@@ -18,6 +18,7 @@ fetch("http://localhost:3000/api/furniture")
     //faire une boucle sur tous les produits
     //dans la boucle ajouter des éléments html avec les données dynamiques
     //innerHTML et les litéraux de gabarit (template literal)
+        
 })
 
 .catch(error => alert("Erreur : " + error));
