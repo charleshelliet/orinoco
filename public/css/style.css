@@ -1,3 +1,6 @@
 body {
     padding-top: 56px;
   }
+img{
+  object-fit: cover;
+}
