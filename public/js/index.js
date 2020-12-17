@@ -29,7 +29,7 @@ fetch("http://localhost:3000/api/furniture")
         <a href="#"><img class="card-img-top" src="${furniture.imageUrl}" alt="${furniture.name}"></a>
         <div class="card-body">
           <h4 class="card-title">
-            <a href="produit.html?${furniture._id}" class="btn btn-primary stretched-link">${furniture.name}</a>
+            <a href="produit.html?id=${furniture._id}" class="btn btn-primary stretched-link">${furniture.name}</a>
           </h4>
           <h5>${numberFormat}</h5>
           <p class="card-text">${furniture.description}</p>
@@ -50,7 +50,7 @@ fetch("http://localhost:3000/api/furniture")
     for (const furniture of productList) {
       carouselInner.innerHTML +=
       `<div class="carousel-item">
-      <a href="produit.html?${furniture._id}">
+      <a href="produit.html?id=${furniture._id}">
         <img class="d-block img-fluid" src="${furniture.imageUrl}" alt="${furniture.name}">
       </a> 
     </div>`
