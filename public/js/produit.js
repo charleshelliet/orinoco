@@ -3,8 +3,7 @@ let url = new URL(link);
 let id = url.searchParams.get("id");
 console.log(id);
 
-fetch("http://localhost:3000/api/furniture" + '/' + id)
-
+fetch("http://localhost:3000/api/furniture/" + id)
   /*
   
   .then(function(response){
@@ -13,12 +12,12 @@ fetch("http://localhost:3000/api/furniture" + '/' + id)
   
   */
 
-  .then(response => response.json())
+  .then((response) => response.json())
 
   //.then(data => console.log(data))
 
   .then(function (productDetails) {
-    console.log(productDetails)
+    console.log(productDetails);
     //code à faire ici
     //faire une boucle sur tous les produits
     //dans la boucle ajouter des éléments html avec les données dynamiques
@@ -26,15 +25,12 @@ fetch("http://localhost:3000/api/furniture" + '/' + id)
 
     let productSelection = document.querySelector("#productSelection");
 
-    const number = productDetails.price/100;
-    let numberFormat = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(number);
 
-    productSelection.innerHTML +=
-    `<div class="card mt-4">
+    productSelection.innerHTML += `<div class="card mt-4">
     <img class="card-img-top img-fluid" src="${productDetails.imageUrl}" alt="${productDetails.name}">
     <div class="card-body">
       <h3 class="card-title">${productDetails.name}</h3>
-      <h4>${numberFormat}</h4>
+      <h4>${currency(productDetails.price)}</h4>
       <p class="card-text">${productDetails.description}</p>
     </div>
   </div>
@@ -50,6 +46,5 @@ fetch("http://localhost:3000/api/furniture" + '/' + id)
       <a href="panier.html" class="btn btn-success">Ajouter au panier</a>
     </div>
   </div>
-  <!-- /.card -->`
-}
-)
+  <!-- /.card -->`;
+  });

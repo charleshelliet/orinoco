@@ -21,8 +21,7 @@ fetch("http://localhost:3000/api/furniture")
     let containerProducts = document.querySelector("#containerProducts");
 
     for (const furniture of productList) {
-      const number = furniture.price/100;
-      let numberFormat = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(number);
+
       containerProducts.innerHTML += 
       `<div class="col-lg-4 col-md-6 mb-4">
       <div class="card h-100">
@@ -31,7 +30,7 @@ fetch("http://localhost:3000/api/furniture")
           <h4 class="card-title">
             <a href="produit.html?id=${furniture._id}" class="btn btn-primary stretched-link">${furniture.name}</a>
           </h4>
-          <h5>${numberFormat}</h5>
+          <h5>${currency(furniture.price)}</h5>
           <p class="card-text">${furniture.description}</p>
         </div>
       </div>
