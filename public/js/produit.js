@@ -41,10 +41,29 @@ fetch("http://localhost:3000/api/furniture/" + id)
       Personnalisation
     </div>
     <div class="card-body">
-      <p>${productDetails.varnish}</p>
+          <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Choix du vernis
+          </button>
+          <div class="dropdown-menu" id="varnishButton" aria-labelledby="dropdownMenuButton">
+          </div>
+        </div>
       <hr>
       <a href="panier.html" class="btn btn-success">Ajouter au panier</a>
     </div>
   </div>
+
   <!-- /.card -->`;
+
+    /* -- boucle ci-dessous pour récupérer les données du tableau de vernis */
+
+    let varnishButton = document.querySelector("#varnishButton");
+    
+    for (const varnish of productDetails.varnish) {
+
+      varnishButton.innerHTML += 
+      `<a class="dropdown-item" href="#">${varnish}</a>`
+    }
+
   });
+
