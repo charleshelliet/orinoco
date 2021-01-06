@@ -1,3 +1,4 @@
+//récupération ID du produit via url et paramètres GET
 let link = window.location.href;
 let url = new URL(link);
 let id = url.searchParams.get("id");
@@ -18,10 +19,9 @@ fetch("http://localhost:3000/api/furniture/" + id)
 
   .then(function (productDetails) {
     console.log(productDetails);
-    //code à faire ici
-    //faire une boucle sur tous les produits
-    //dans la boucle ajouter des éléments html avec les données dynamiques
-    //innerHTML et les litéraux de gabarit (template literal)
+
+    //affichage dynamique du détail du produit sélectionné selon l'id
+    //utilisation de innerHTML et les litéraux de gabarit (template literal)
 
     let productSelection = document.querySelector("#productSelection");
 
@@ -49,21 +49,32 @@ fetch("http://localhost:3000/api/furniture/" + id)
           </div>
         </div>
       <hr>
-      <a href="panier.html" class="btn btn-success">Ajouter au panier</a>
+      <a href="panier.html" id="basketButton" class="btn btn-success">Ajouter au panier</a>
     </div>
   </div>
 
   <!-- /.card -->`;
 
-    /* -- boucle ci-dessous pour récupérer les données du tableau de vernis */
+    //boucle récupération des données du tableau de vernis
 
     let varnishButton = document.querySelector("#varnishButton");
-    
+
+    console.log(productDetails.varnish);
+
     for (const varnish of productDetails.varnish) {
 
       varnishButton.innerHTML += 
       `<a class="dropdown-item" href="#">${varnish}</a>`
     }
 
+    //événement onclick ajout au panier
+
+    basketButton.addEventListener("click", function(){console.log("YOUPI mon click fonctionne")}, false);  
+
+    //enregistrement localStorage de l'id du produit
+
+    localStorage.setItem('addedProduct', id);
+
   });
 
+ 

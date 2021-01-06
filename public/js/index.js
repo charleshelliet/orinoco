@@ -1,3 +1,5 @@
+//récupération des données de l'API via fetch
+
 fetch("http://localhost:3000/api/furniture")
 
   /*
@@ -14,10 +16,10 @@ fetch("http://localhost:3000/api/furniture")
 
   .then(function (productList) {
     console.log(productList)
-    //code à faire ici
-    //faire une boucle sur tous les produits
-    //dans la boucle ajouter des éléments html avec les données dynamiques
-    //innerHTML et les litéraux de gabarit (template literal)
+    //affichage des produits sur la page d'accueil
+    //boucle sur tous les produits
+    //la boucle contient des éléments html avec les données dynamiques
+    //utilisation de innerHTML et les litéraux de gabarit (template literal)
     let containerProducts = document.querySelector("#containerProducts");
 
     for (const furniture of productList) {
@@ -36,6 +38,8 @@ fetch("http://localhost:3000/api/furniture")
       </div>
     </div>`
     }
+
+    //affichage dynamique du carrousel
 
     let carouselIndicators = document.querySelector(".carousel-indicators");
 
@@ -70,4 +74,4 @@ fetch("http://localhost:3000/api/furniture")
   .catch(function (error) {
     console.log(error)
   }
-  )
+  );
