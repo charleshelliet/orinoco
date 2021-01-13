@@ -41,13 +41,9 @@ fetch("http://localhost:3000/api/furniture/" + id)
       Personnalisation
     </div>
     <div class="card-body">
-          <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Choix du vernis
-          </button>
-          <div class="dropdown-menu" id="varnishButton" aria-labelledby="dropdownMenuButton">
-          </div>
-        </div>
+      <select class="custom-select" id="varnishButton">
+        <option selected>Choix du vernis</option>
+      </select>
       <hr>
       <a href="panier.html" id="basketButton" class="btn btn-success">Ajouter au panier</a>
     </div>
@@ -64,16 +60,18 @@ fetch("http://localhost:3000/api/furniture/" + id)
     for (const varnish of productDetails.varnish) {
 
       varnishButton.innerHTML += 
-      `<a class="dropdown-item" href="#">${varnish}</a>`
+      `<option value="1">${varnish}</option>`
     }
 
-    //événement onclick ajout au panier
+    //événement onclick ajout au panier + enregistrement localStorage de l'id du produit
 
-    basketButton.addEventListener("click", function(){console.log("YOUPI mon click fonctionne")}, false);  
-
-    //enregistrement localStorage de l'id du produit
-
-    localStorage.setItem('addedProduct', id);
+    basketButton.addEventListener("click", function(){
+      console.log("YOUPI mon click fonctionne");
+      //tableau regroupant les id
+      let idArray = []
+      idArray.push(id);
+      localStorage.setItem('addedProduct', id);
+    });  
 
   });
 
