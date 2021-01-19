@@ -42,7 +42,7 @@ fetch("http://localhost:3000/api/furniture/" + id)
     </div>
     <div class="card-body">
       <select class="custom-select" id="varnishButton">
-        <option selected>Choix du vernis</option>
+        <option selected id="testVarnish">Choix du vernis</option>
       </select>
       <hr>
       <a href="panier.html" id="basketButton" class="btn btn-success">Ajouter au panier</a>
@@ -65,12 +65,30 @@ fetch("http://localhost:3000/api/furniture/" + id)
 
     //événement onclick ajout au panier + enregistrement localStorage de l'id du produit
 
-    basketButton.addEventListener("click", function(){
+    basketButton.addEventListener("click", function(event){
+      event.preventDefault()
       console.log("YOUPI mon click fonctionne");
-      //tableau regroupant les id
-      let idArray = []
-      idArray.push(id);
-      localStorage.setItem('addedProduct', id);
+      //vérifier si local storage vide ou non
+      if (localStorage.getItem('addedProduct') === null) {
+        //tableau vide
+        console.log("rien dans le panier")
+        //tableau regroupant les id
+        let idArray = []
+        idArray.push(id);
+        localStorage.setItem('addedProduct', idArray);
+      }
+      else {
+        //tableau rempli
+        console.log("panier bien rempli")
+        //récupérer le tableau
+        idArray = JSON.parse(localStorage.getItem('addedProduct'));
+        console.log(idArray);
+        idArray.push(id);
+        console.log(idArray);
+        localStorage.setItem('addedProduct', JSON.stringify(idArray));
+        console.log(idArray);
+      }
+    
     });  
 
   });
