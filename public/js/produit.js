@@ -66,7 +66,7 @@ fetch("http://localhost:3000/api/furniture/" + id)
     //événement onclick ajout au panier + enregistrement localStorage de l'id du produit
 
     basketButton.addEventListener("click", function(event){
-      event.preventDefault()
+      //event.preventDefault()
       console.log("YOUPI mon click fonctionne");
       //vérifier si local storage vide ou non
       if (localStorage.getItem('addedProduct') === null) {
@@ -75,7 +75,8 @@ fetch("http://localhost:3000/api/furniture/" + id)
         //tableau regroupant les id
         let idArray = []
         idArray.push(id);
-        localStorage.setItem('addedProduct', idArray);
+        localStorage.setItem('addedProduct', JSON.stringify(idArray));
+        console.log("tableau créé", localStorage.getItem('addedProduct'))
       }
       else {
         //tableau rempli
