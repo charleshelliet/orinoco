@@ -76,7 +76,7 @@ fetch("http://localhost:3000/api/furniture/" + id)
         let idArray = []
         idArray.push(id);
         localStorage.setItem('addedProduct', JSON.stringify(idArray));
-        console.log("tableau créé", localStorage.getItem('addedProduct'))
+        console.log("tableau créé :", localStorage.getItem('addedProduct'))
       }
       else {
         //tableau rempli
@@ -84,6 +84,7 @@ fetch("http://localhost:3000/api/furniture/" + id)
         //récupérer le tableau
         idArray = JSON.parse(localStorage.getItem('addedProduct'));
         console.log(idArray);
+        //ajout nouvel item
         idArray.push(id);
         console.log(idArray);
         localStorage.setItem('addedProduct', JSON.stringify(idArray));

@@ -1,4 +1,4 @@
-let basket = localStorage.getItem('addedProduct');
+let basket = JSON.parse(localStorage.getItem('addedProduct'));
 console.log(basket)
 
 //récupération des données de l'API via fetch
