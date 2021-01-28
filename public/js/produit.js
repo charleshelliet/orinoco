@@ -75,6 +75,12 @@ fetch("http://localhost:3000/api/furniture/" + id)
     }
     );
 
+    //création objet
+    let meubleVernis = new Object();
+    meubleVernis.meuble = id;
+    meubleVernis.varnish = this.value;
+    console.log(meubleVernis);
+
     //événement onclick ajout au panier + enregistrement localStorage de l'id du produit
 
     basketButton.addEventListener("click", function(event){
@@ -86,7 +92,7 @@ fetch("http://localhost:3000/api/furniture/" + id)
         console.log("rien dans le panier")
         //tableau regroupant les id
         let idArray = []
-        idArray.push(id);
+        idArray.push(meubleVernis);
         localStorage.setItem('addedProduct', JSON.stringify(idArray));
         console.log("tableau créé :", localStorage.getItem('addedProduct'))
       }
