@@ -48,4 +48,11 @@ for (const product of basket) {
    <td class="border-0 align-middle"><a href="" class="text-dark"><i class="fa fa-trash"></i></a></td>
  </tr>`;
     });
+
+  
 }
+
+//calcul du prix du panier
+
+let sousTotal = document.querySelector("#sous-total");
+sousTotal.innerHTML += `<strong class="text-muted">Sous-total </strong><strong>kikou</strong>`

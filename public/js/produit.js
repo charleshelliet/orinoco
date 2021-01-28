@@ -57,11 +57,23 @@ fetch("http://localhost:3000/api/furniture/" + id)
 
     console.log(productDetails.varnish);
 
+    //affichage
+
     for (const varnish of productDetails.varnish) {
 
       varnishButton.innerHTML += 
-      `<option value="1">${varnish}</option>`
+      `<option value="${varnish}">${varnish}</option>`
     }
+    
+    //enregistrement du vernis choisi
+
+    varnishButton.addEventListener("change", function(event){
+      console.log("clic vernis");
+      document.querySelector("#varnishButton").value = this.value;
+      console.log(this.value);
+      localStorage.setItem('varnishSelect', JSON.stringify(this.value));
+    }
+    );
 
     //événement onclick ajout au panier + enregistrement localStorage de l'id du produit
 
