@@ -4,7 +4,7 @@ console.log(basket);
 //boucle qui affiche les id de chaque produit
 for (const product of basket) {
   console.log(product);
-  fetch("http://localhost:3000/api/furniture/" + product)
+  fetch("http://localhost:3000/api/furniture/" + product.meuble)
     /*
   
   .then(function(response){

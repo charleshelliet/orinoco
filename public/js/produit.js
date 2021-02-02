@@ -41,7 +41,7 @@ fetch("http://localhost:3000/api/furniture/" + id)
       Personnalisation
     </div>
     <div class="card-body">
-      <select class="custom-select" id="varnishButton">
+      <select class="custom-select" id="varnishSelect">
         <option selected id="testVarnish">Choix du vernis</option>
       </select>
       <hr>
@@ -53,39 +53,41 @@ fetch("http://localhost:3000/api/furniture/" + id)
 
     //boucle récupération des données du tableau de vernis
 
-    let varnishButton = document.querySelector("#varnishButton");
+    let varnishSelect = document.querySelector("#varnishSelect");
 
     console.log(productDetails.varnish);
 
     //affichage
 
-    for (const varnish of productDetails.varnish) {
-
-      varnishButton.innerHTML += 
-      `<option value="${varnish}">${varnish}</option>`
+    for (const [i, varnish] of productDetails.varnish.entries()) { 
+      varnishSelect.innerHTML += 
+      `<option value="${i}">${varnish}</option>`
     }
     
-    //enregistrement du vernis choisi
+    /*enregistrement du vernis choisi
 
-    varnishButton.addEventListener("change", function(event){
+    varnishSelect.addEventListener("change", function(event){
       console.log("clic vernis");
-      document.querySelector("#varnishButton").value = this.value;
+      document.querySelector("#varnishSelect").value = this.value;
       console.log(this.value);
       localStorage.setItem('varnishSelect', JSON.stringify(this.value));
     }
     );
-
-    //création objet
-    let meubleVernis = new Object();
-    meubleVernis.meuble = id;
-    meubleVernis.varnish = this.value;
-    console.log(meubleVernis);
+    */
 
     //événement onclick ajout au panier + enregistrement localStorage de l'id du produit
 
     basketButton.addEventListener("click", function(event){
       //event.preventDefault()
       console.log("YOUPI mon click fonctionne");
+      //choix vernis
+      let varnish = document.querySelector("#varnishSelect");
+      let valueVarnish = varnish.options[varnish.selectedIndex].text;
+      //création objet
+      let meubleVernis = new Object();
+      meubleVernis.meuble = id;
+      meubleVernis.varnish = valueVarnish;
+      console.log(meubleVernis);
       //vérifier si local storage vide ou non
       if (localStorage.getItem('addedProduct') === null) {
         //tableau vide
@@ -103,7 +105,7 @@ fetch("http://localhost:3000/api/furniture/" + id)
         idArray = JSON.parse(localStorage.getItem('addedProduct'));
         console.log(idArray);
         //ajout nouvel item
-        idArray.push(id);
+        idArray.push(meubleVernis);
         console.log(idArray);
         localStorage.setItem('addedProduct', JSON.stringify(idArray));
         console.log(idArray);
