@@ -5,17 +5,8 @@ let id = url.searchParams.get("id");
 console.log(id);
 
 fetch("http://localhost:3000/api/furniture/" + id)
-  /*
-  
-  .then(function(response){
-      return response.json()
-  })
-  
-  */
 
   .then((response) => response.json())
-
-  //.then(data => console.log(data))
 
   .then(function (productDetails) {
     console.log(productDetails);
@@ -24,7 +15,6 @@ fetch("http://localhost:3000/api/furniture/" + id)
     //utilisation de innerHTML et les litéraux de gabarit (template literal)
 
     let productSelection = document.querySelector("#productSelection");
-
 
     productSelection.innerHTML += `<div class="card mt-4">
     <img class="card-img-top img-fluid" src="${productDetails.imageUrl}" alt="${productDetails.name}">
@@ -87,6 +77,7 @@ fetch("http://localhost:3000/api/furniture/" + id)
       let meubleVernis = new Object();
       meubleVernis.meuble = id;
       meubleVernis.varnish = valueVarnish;
+      meubleVernis.quantity = 1;
       console.log(meubleVernis);
       //vérifier si local storage vide ou non
       if (localStorage.getItem('addedProduct') === null) {
@@ -99,16 +90,28 @@ fetch("http://localhost:3000/api/furniture/" + id)
         console.log("tableau créé :", localStorage.getItem('addedProduct'))
       }
       else {
+        //vérifier si un produit (+ vernis) parmi le tableau existe
         //tableau rempli
         console.log("panier bien rempli")
         //récupérer le tableau
         idArray = JSON.parse(localStorage.getItem('addedProduct'));
         console.log(idArray);
-        //ajout nouvel item
+        //(boucle) sur les produits du tableau et contrôler (condition) pour chaque produit si id + vernis correspondent
+        for(const meuble of meubleVernis){
+          if (meubleVernis.meuble = id) {
+            //quantité + 1 si c'est le cas
+            meubleVernis.quantity = meubleVernis.quantity + 1;
+          }
+        else {  
+        //push si produit pas dans le tableau et ajout nouvel item
         idArray.push(meubleVernis);
         console.log(idArray);
         localStorage.setItem('addedProduct', JSON.stringify(idArray));
         console.log(idArray);
+          } 
+          
+        }
+        
       }
     
     });  

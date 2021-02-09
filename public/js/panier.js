@@ -1,27 +1,21 @@
+//récupération objet contenu panier (id + vernis)
 let basket = JSON.parse(localStorage.getItem("addedProduct"));
 console.log(basket);
+
+//initialisation prix panier
+var prix = 0 
 
 //boucle qui affiche les id de chaque produit
 for (const product of basket) {
   console.log(product);
   fetch("http://localhost:3000/api/furniture/" + product.meuble)
-    /*
-  
-  .then(function(response){
-      return response.json()
-  })
-  
-  */
 
     .then((response) => response.json())
-
-    //.then(data => console.log(data))
 
     .then(function (productList) {
       console.log(productList);
 
       let basket = localStorage.getItem("addedProduct");
-      console.log(basket);
 
       let oneMore = document.querySelector("#basket");
       oneMore.innerHTML += `<tr>
@@ -35,8 +29,8 @@ for (const product of basket) {
            productList._id
          }" class="text-dark d-inline-block align-middle">${
         productList.name
-      }</a></h5><span class="text-muted font-weight-normal font-italic d-block">Vernis:${
-        productList.varnish
+      }</a></h5><span class="text-muted font-weight-normal font-italic d-block">Vernis: ${
+        product.varnish
       }</span>
        </div>
      </div>
@@ -44,15 +38,44 @@ for (const product of basket) {
    <td class="border-0 align-middle"><strong>${currency(
      productList.price
    )}</strong></td>
-   <td class="border-0 align-middle"><strong>1</strong></td>
+   <td class="border-0 align-middle"><strong>${
+    product.quantity
+  }</strong></td>
    <td class="border-0 align-middle"><a href="" class="text-dark"><i class="fa fa-trash"></i></a></td>
  </tr>`;
-    });
 
-  
+ //calcul du prix du panier
+ prix = prix + productList.price;
+ console.log(prix);
+ sessionStorage.setItem('priceUpdated', prix);
+});
+
 }
 
-//calcul du prix du panier
-
+//sous total
+prix = sessionStorage.getItem('priceUpdated');
+console.log(prix);
 let sousTotal = document.querySelector("#sous-total");
-sousTotal.innerHTML += `<strong class="text-muted">Sous-total </strong><strong>kikou</strong>`
+sousTotal.innerHTML += `<strong>${currency(prix
+)}</strong>`;
+
+//frais de port
+let shipping = prix * 0.05;
+console.log(shipping);
+let shippingValue = document.querySelector("#shipping");
+shippingValue.innerHTML += `<strong>${currency(shipping
+  )}</strong>`;
+
+//TVA
+let tva = prix * 0.2;
+console.log(tva);
+let tvaValue = document.querySelector("#tva");
+tvaValue.innerHTML += `<strong>${currency(tva
+  )}</strong>`;
+
+//Total
+let total = prix + shipping + tva; 
+console.log(total);
+let totalValue = document.querySelector("#total");
+totalValue.innerHTML += `<p><strong>${currency(total
+  )}</strong></p>`;

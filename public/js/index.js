@@ -1,5 +1,4 @@
 //récupération des données de l'API via fetch
-
 fetch("http://localhost:3000/api/furniture")
 
   /*
