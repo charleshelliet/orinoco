@@ -1,191 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-<head>
+    <title>Orinoco - plateforme e-commerce</title>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-  <title>Orinoco - plateforme e-commerce</title>
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-   <!-- Navigation -->
-   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <i class="fas fa-tree"></i> Orinoco
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand" href="panier.html">
-        <i class="fas fa-shopping-basket"></i> Mon panier
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Page Content -->
-  <div class="px-4 px-lg-0">
-
-    
-  
-    <div class="pb-5">
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
-            
-  
-            <!-- Shopping cart table -->
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col" class="border-0 bg-light">
-                      <div class="p-2 px-3 text-uppercase">Produit</div>
-                    </th>
-                    <th scope="col" class="border-0 bg-light">
-                      <div class="py-2 text-uppercase">Prix</div>
-                    </th>
-                    <th scope="col" class="border-0 bg-light">
-                      <div class="py-2 text-uppercase">Quantité</div>
-                    </th>
-                    <th scope="col" class="border-0 bg-light">
-                      <div class="py-2 text-uppercase">Retirer</div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody id="basket">
-                  <!-- Panier dynamique -->
-                </tbody>
-              </table>
-            </div>
-            <!-- End -->
-          </div>
-        </div>
-  
-        <div class="row py-5 p-4 bg-white rounded shadow-sm">
-          <div class="col-lg-6">
-            <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">formulaire de commande</div>
-            <div class="p-4">
-              <p class="font-italic mb-4">Merci de bien remplir vos coordonnées afin de valider la commande et procéder à la livraison.</p>
+        <a class="navbar-brand" href="index.html">
+          <i class="fas fa-tree"></i> Orinoco
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="panier.html">
+          <i class="fas fa-shopping-basket"></i> Mon panier
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </nav>
 
-              <!-- Grid row -->
-               <div class="row">
-                <!-- Grid column -->
-                <div class="col-lg-6">
-
-                  <!-- First name -->
-                  <div class="md-form md-outline mt-0">
-                    <input type="text" id="form11" placeholder="Prénom" class="form-control">
-                    <label for="form11"></label>
-                  </div>
-
-                </div>
-                      <!-- Grid column -->
-                      <!-- Grid column -->
-                <div class="col-lg-6">
-
-                  <!-- Last name -->
-                  <div class="md-form md-outline mt-0">
-                    <input type="text" id="form12" placeholder="Nom" class="form-control">
-                    <label for="form12"></label>
-                  </div>
-
-                </div>
-                <!-- Grid column -->
+    <!-- Page Content -->
+    <div class="px-4 px-lg-0">
+      <div class="pb-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+              <!-- Shopping cart table -->
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="border-0 bg-light">
+                        <div class="p-2 px-3 text-uppercase">Produit</div>
+                      </th>
+                      <th scope="col" class="border-0 bg-light">
+                        <div class="py-2 text-uppercase">Prix</div>
+                      </th>
+                      <th scope="col" class="border-0 bg-light">
+                        <div class="py-2 text-uppercase">Quantité</div>
+                      </th>
+                      <th scope="col" class="border-0 bg-light">
+                        <div class="py-2 text-uppercase">Retirer</div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="basket">
+                    <!-- Panier dynamique -->
+                  </tbody>
+                </table>
               </div>
-              <!-- Grid row -->
-
-      <!-- Address Part 1 -->
-      <div class="md-form md-outline mt-0">
-        <input type="text" id="form14" placeholder="Adresse" class="form-control">
-        <label for="form14"></label>
-      </div>
-
-      <!-- Postcode / ZIP -->
-      <div class="md-form md-outline mt-0">
-        <input type="text" id="form16" placeholder="Code postal" class="form-control">
-        <label for="form16"></label>
-      </div>
-
-      <!-- Town / City -->
-      <div class="md-form md-outline mt-0">
-        <input type="text" id="form17" placeholder="Ville" class="form-control">
-        <label for="form17"></label>
-      </div>
-
-      <!-- Phone -->
-      <div class="md-form md-outline mt-0">
-        <input type="number" id="form18" placeholder="Téléphone" class="form-control">
-        <label for="form18"></label>
-      </div>
-
-      <!-- Email address -->
-      <div class="md-form md-outline mt-0">
-        <input type="email" id="form19" placeholder="Adresse email" class="form-control">
-        <label for="form19"></label> 
-      </div>
-
-          </div>
-
-            <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Information complémentaire</div>
-            <div class="p-4">
-              <p class="font-italic mb-4">Si vous avez des questions particulières ou des informations à fournir au vendeur</p>
-              <textarea name="" cols="30" rows="2" class="form-control"></textarea>
+              <!-- End -->
             </div>
           </div>
-          <div class="col-lg-6">
-            <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Résumé de la commande</div>
-            <div class="p-4">
-              <p class="font-italic mb-4">Les frais d'expédition et les frais supplémentaires sont calculés sur la base des valeurs que vous avez saisies.</p>
-              <ul class="list-unstyled mb-4">
-                <li class="d-flex justify-content-between py-3 border-bottom" id="sous-total"><strong class="text-muted">Sous-total </strong></li>
-                <li class="d-flex justify-content-between py-3 border-bottom" id="shipping"><strong class="text-muted">Frais de livraison </strong></li>
-                <li class="d-flex justify-content-between py-3 border-bottom" id="tva"><strong class="text-muted">TVA </strong></li>
-                <li class="d-flex justify-content-between py-3 border-bottom" id="total"><strong class="text-muted">Total</strong>
-                  <h5 class="font-weight-bold" id="total"></h5>
-                </li>
-              </ul><a href="confirmation.html" class="btn btn-dark rounded-pill py-2 btn-block">Procéder au paiement</a>
+
+          <form class="row py-5 p-4 bg-white rounded shadow-sm">
+            <div class="col-lg-6">
+              <div
+                class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold"
+              >
+                formulaire de commande
+              </div>
+              <div class="p-4">
+                <p class="font-italic mb-4">
+                  Merci de bien remplir vos coordonnées afin de valider la
+                  commande et procéder à la livraison.
+                </p>
+
+                <!-- Grid row -->
+                <div class="row">
+                  <!-- Grid column -->
+                  <div class="col-lg-6">
+                    <!-- First name -->
+                    <div class="md-form md-outline mt-0">
+                      <input
+                        required
+                        type="text"
+                        id="form11"
+                        placeholder="Prénom"
+                        class="form-control"
+                      />
+                      <label for="form11"></label>
+                    </div>
+                  </div>
+                  <!-- Grid column -->
+                  <!-- Grid column -->
+                  <div class="col-lg-6">
+                    <!-- Last name -->
+                    <div class="md-form md-outline mt-0">
+                      <input
+                        required
+                        type="text"
+                        id="form12"
+                        placeholder="Nom"
+                        class="form-control"
+                      />
+                      <label for="form12"></label>
+                    </div>
+                  </div>
+                  <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+
+                <!-- Address Part 1 -->
+                <div class="md-form md-outline mt-0">
+                  <input
+                    required
+                    type="text"
+                    id="form14"
+                    placeholder="Adresse"
+                    class="form-control"
+                  />
+                  <label for="form14"></label>
+                </div>
+
+                <!-- Postcode / ZIP -->
+                <div class="md-form md-outline mt-0">
+                  <input
+                    required
+                    type="text"
+                    id="form16"
+                    placeholder="Code postal"
+                    class="form-control"
+                  />
+                  <label for="form16"></label>
+                </div>
+
+                <!-- Town / City -->
+                <div class="md-form md-outline mt-0">
+                  <input
+                    required
+                    type="text"
+                    id="form17"
+                    placeholder="Ville"
+                    class="form-control"
+                  />
+                  <label for="form17"></label>
+                </div>
+
+                <!-- Phone -->
+                <div class="md-form md-outline mt-0">
+                  <input
+                    required
+                    type="tel"
+                    id="form18"
+                    placeholder="Téléphone"
+                    class="form-control"
+                  />
+                  <label for="form18"></label>
+                </div>
+
+                <!-- Email address -->
+                <div class="md-form md-outline mt-0">
+                  <input
+                    required
+                    type="email"
+                    id="form19"
+                    placeholder="Adresse email"
+                    class="form-control"
+                  />
+                  <label for="form19"></label>
+                </div>
+              </div>
+
+              <div
+                class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold"
+              >
+                Information complémentaire
+              </div>
+              <div class="p-4">
+                <p class="font-italic mb-4">
+                  Si vous avez des questions particulières ou des informations à
+                  fournir au vendeur
+                </p>
+                <textarea
+                  name=""
+                  cols="30"
+                  rows="2"
+                  class="form-control"
+                ></textarea>
+              </div>
             </div>
-          </div>
+            <div class="col-lg-6">
+              <div
+                class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold"
+              >
+                Résumé de la commande
+              </div>
+              <div class="p-4">
+                <p class="font-italic mb-4">
+                  Les frais d'expédition et les frais supplémentaires sont
+                  calculés sur la base des valeurs que vous avez saisies.
+                </p>
+                <ul class="list-unstyled mb-4">
+                  <li
+                    class="d-flex justify-content-between py-3 border-bottom"
+                    id="sous-total"
+                  >
+                    <strong class="text-muted">Sous-total </strong>
+                  </li>
+                  <li
+                    class="d-flex justify-content-between py-3 border-bottom"
+                    id="shipping"
+                  >
+                    <strong class="text-muted">Frais de livraison </strong>
+                  </li>
+                  <li
+                    class="d-flex justify-content-between py-3 border-bottom"
+                    id="tva"
+                  >
+                    <strong class="text-muted">TVA </strong>
+                  </li>
+                  <li
+                    class="d-flex justify-content-between py-3 border-bottom"
+                    id="total"
+                  >
+                    <strong class="text-muted">Total</strong>
+                    <h5 class="font-weight-bold" id="total"></h5>
+                  </li>
+                </ul>
+                <input
+                  type="submit"
+                  href="confirmation.html"
+                  class="btn btn-dark rounded-pill py-2 btn-block"
+                  id="submit"
+                  value="Procéder au paiement"/>
+              </div>
+            </div>
+          </form>
         </div>
-  
       </div>
     </div>
-  </div>
 
-  <!-- Footer -->
-  <footer class="py-5 bg-primary">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright © Orinoco Mobilier Bois 2021</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+    <!-- Footer -->
+    <footer class="py-5 bg-primary">
+      <div class="container">
+        <p class="m-0 text-center text-white">
+          Copyright © Orinoco Mobilier Bois 2021
+        </p>
+      </div>
+      <!-- /.container -->
+    </footer>
 
-  <!-- Kit Font Awesome -->
-  <script src="https://kit.fontawesome.com/4cf2eb7f55.js" crossorigin="anonymous"></script>
+    <!-- Kit Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/4cf2eb7f55.js"
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="js/functions.js"></script>
-  <script src="js/panier.js"></script>
-
-</body>
-
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/panier.js"></script>
+  </body>
 </html>

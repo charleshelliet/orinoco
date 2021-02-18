@@ -2,7 +2,6 @@
 let basket = JSON.parse(localStorage.getItem("addedProduct"));
 console.log(basket);
 
-
 async function displayProduct() {
   //initialisation prix panier
   var prix = 0;
@@ -47,6 +46,7 @@ async function displayProduct() {
         console.log(prix);
         sessionStorage.setItem("priceUpdated", prix);
       });
+      
   }
   console.log(prix);
   return prix;
@@ -78,3 +78,15 @@ async function basketPrice() {
 }
 
 basketPrice();
+
+//sauvegarder des données du formulaire sur le service web
+submit.addEventListener("click", function(event){
+
+  console.log("le clic a fonctionné");
+  event.preventDefault()
+  var request = new XMLHttpRequest();
+  request.open("POST", "http://localhost:3000/api/furniture");
+  request.setRequestHeader("Content-Type", "application/json");
+  request.send(JSON.stringify(jsonBody));
+  console.log(request);
+})
