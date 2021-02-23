@@ -4,3 +4,7 @@ body {
 img{
   object-fit: cover;
 }
+
+.jumbotron{
+  margin-top: 2rem;
+}
