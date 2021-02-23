@@ -79,8 +79,8 @@ async function basketPrice() {
 
 basketPrice();
 
-//sauvegarder des données du formulaire sur le service web
-submit.addEventListener("click", function(event){
+  /*sauvegarder des données du formulaire sur le service web
+  submit.addEventListener("click", function(event){
 
   console.log("le clic a fonctionné");
   event.preventDefault()
@@ -90,3 +90,4 @@ submit.addEventListener("click", function(event){
   request.send(JSON.stringify(jsonBody));
   console.log(request);
 })
+*/
