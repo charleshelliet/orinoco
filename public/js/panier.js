@@ -35,9 +35,12 @@ for (const product of basket) {
      productList.price
    )}</strong></td>
    <td class="border-0 align-middle"><strong>${product.quantity}</strong></td>
-   <td class="border-0 align-middle"><a href="" class="text-dark"><i class="fa fa-trash"></i></a></td>
+   <td class="border-0 align-middle"><a role="button" onclick="remove()" href="panier.html" class="text-dark"><i class="fa fa-trash"></i></a></td>
  </tr>`;
+
     });
+    
+   
 }
 
 //récupérer prix panier
@@ -78,5 +81,10 @@ function store() {
   let inputEmail = document.querySelector("#form19");
   localStorage.setItem("email", inputEmail.value);
   let textInfo = document.querySelector("#form20");
-  localStorage.setItem("info", textInfo);
+  localStorage.setItem("info", textInfo.value);
 }
+
+  //supprimer un article du panier
+  function remove(){
+    localStorage.removeItem("addedProduct");
+  }
