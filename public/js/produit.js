@@ -5,7 +5,6 @@ let id = url.searchParams.get("id");
 console.log(id);
 
 fetch("http://localhost:3000/api/furniture/" + id)
-
   .then((response) => response.json())
 
   .then(function (productDetails) {
@@ -17,7 +16,9 @@ fetch("http://localhost:3000/api/furniture/" + id)
     let productSelection = document.querySelector("#productSelection");
 
     productSelection.innerHTML += `<div class="card mt-4">
-    <img class="card-img-top img-fluid" src="${productDetails.imageUrl}" alt="${productDetails.name}">
+    <img class="card-img-top img-fluid" src="${productDetails.imageUrl}" alt="${
+      productDetails.name
+    }">
     <div class="card-body">
       <h3 class="card-title">${productDetails.name}</h3>
       <h4>${currency(productDetails.price)}</h4>
@@ -49,11 +50,10 @@ fetch("http://localhost:3000/api/furniture/" + id)
 
     //affichage
 
-    for (const [i, varnish] of productDetails.varnish.entries()) { 
-      varnishSelect.innerHTML += 
-      `<option value="${i}">${varnish}</option>`
+    for (const [i, varnish] of productDetails.varnish.entries()) {
+      varnishSelect.innerHTML += `<option value="${i}">${varnish}</option>`;
     }
-    
+
     /*enregistrement du vernis choisi
 
     varnishSelect.addEventListener("change", function(event){
@@ -67,11 +67,11 @@ fetch("http://localhost:3000/api/furniture/" + id)
 
     //événement onclick ajout au panier + enregistrement localStorage de l'id du produit
 
-    basketButton.addEventListener("click", function(event){
+    basketButton.addEventListener("click", function (event) {
       //event.preventDefault()
       console.log("YOUPI mon click fonctionne");
       //choix vernis
-      let varnish = document.querySelector("#varnishSelect");
+      let varnish = document.querySelector("#varnishSelect");
       let valueVarnish = varnish.options[varnish.selectedIndex].text;
       //création objet
       let meubleVernis = new Object();
@@ -79,43 +79,36 @@ fetch("http://localhost:3000/api/furniture/" + id)
       meubleVernis.varnish = valueVarnish;
       meubleVernis.quantity = 1;
       console.log(meubleVernis);
+      let price = 0;
       //vérifier si local storage vide ou non
-      if (localStorage.getItem('addedProduct') === null) {
+      if (localStorage.getItem("addedProduct") === null) {
         //tableau vide
-        console.log("rien dans le panier")
+        console.log("rien dans le panier");
         //tableau regroupant les id
-        let idArray = []
+        let idArray = [];
         idArray.push(meubleVernis);
-        localStorage.setItem('addedProduct', JSON.stringify(idArray));
-        console.log("tableau créé :", localStorage.getItem('addedProduct'))
-      }
-      else {
+        localStorage.setItem("addedProduct", JSON.stringify(idArray));
+        console.log("tableau créé :", localStorage.getItem("addedProduct"));
+        //ajouter le prix
+        price = productDetails.price;
+        console.log(price);
+        localStorage.setItem("price", JSON.stringify(price));
+      } else {
         //vérifier si un produit (+ vernis) parmi le tableau existe
         //tableau rempli
-        console.log("panier bien rempli")
+        console.log("panier bien rempli");
         //récupérer le tableau
-        idArray = JSON.parse(localStorage.getItem('addedProduct'));
+        idArray = JSON.parse(localStorage.getItem("addedProduct"));
         console.log(idArray);
-        //(boucle) sur les produits du tableau et contrôler (condition) pour chaque produit si id + vernis correspondent
-        for(const meuble of meubleVernis){
-          if (meubleVernis.meuble = id) {
-            //quantité + 1 si c'est le cas
-            meubleVernis.quantity = meubleVernis.quantity + 1;
-          }
-        else {  
-        //push si produit pas dans le tableau et ajout nouvel item
+        //push produit dans le tableau
         idArray.push(meubleVernis);
+        localStorage.setItem("addedProduct", JSON.stringify(idArray));
         console.log(idArray);
-        localStorage.setItem('addedProduct', JSON.stringify(idArray));
-        console.log(idArray);
-          } 
-          
-        }
-        
+        //ajouter le prix
+        price =
+          JSON.parse(localStorage.getItem("price")) + productDetails.price;
+        console.log(price);
+        localStorage.setItem("price", JSON.stringify(price));
       }
-    
-    });  
-
+    });
   });
-
- 
