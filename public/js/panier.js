@@ -77,4 +77,6 @@ function store() {
   );
   let inputEmail = document.querySelector("#form19");
   localStorage.setItem("email", inputEmail.value);
+  let textInfo = document.querySelector("#form20");
+  localStorage.setItem("info", textInfo);
 }
