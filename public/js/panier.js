@@ -65,8 +65,13 @@ let totalValue = document.querySelector("#total");
 totalValue.innerHTML += `<p><strong>${currency(total)}</strong></p>`;
 localStorage.setItem("total", total);
 
-//Enregistrer les données du formulaire dans le localstorage
-function store() {
+
+
+//sauvegarder des données du formulaire sur le service web
+submit.addEventListener("click", function(event){
+
+  console.log("le clic a fonctionné");
+  event.preventDefault()  
   //Nom + Prénom
   let inputFirstname = document.querySelector("#form11");
   let inputLastname = document.querySelector("#form12");
@@ -76,13 +81,57 @@ function store() {
   let inputCity = document.querySelector("#form17");
   localStorage.setItem(
     "adress",
-    inputAdress.value + inputZip.value + inputCity.value
+    inputAdress.value + " " + inputZip.value + " " + inputCity.value
   );
   let inputEmail = document.querySelector("#form19");
   localStorage.setItem("email", inputEmail.value);
   let textInfo = document.querySelector("#form20");
   localStorage.setItem("info", textInfo.value);
-}
+
+ //créer un objet contact
+ let contact = new Object();
+  contact.firstName = inputFirstname.value;
+  contact.lastName = inputLastname.value;
+  contact.adress = inputAdress.value;
+  contact.city = inputCity.value;
+  contact.email = inputEmail.value;
+  console.log(contact); 
+  console.log(basket); 
+
+//body
+backend = JSON.stringify(contact) + JSON.stringify(basket);
+console.log(backend); 
+
+let commande = fetch("http://localhost:3000/api/furniture", {
+  method: "POST", 
+  headers: {
+    "Content-Type": "application/json" 
+  },
+  body: JSON.stringify(contact + basket),
+});
+
+console.log(commande);
+
+})
+
+
+//envoyer et valider les données auprès du backend
+
+/**
+ *
+ * Expects request to contain:
+ * contact: {
+ *   firstName: string,
+ *   lastName: string,
+ *   address: string,
+ *   city: string,
+ *   email: string
+ * }
+ * products: [string] <-- array of product _id
+ *
+ */
+
+
 
   //supprimer un article du panier
   function remove(){
