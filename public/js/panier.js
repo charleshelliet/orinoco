@@ -1,15 +1,12 @@
 //récupération objet contenu panier (id + vernis)
 let basket = JSON.parse(localStorage.getItem("addedProduct"));
-console.log(basket);
 
 //boucle qui affiche les id de chaque produit
 for (const product of basket) {
-  console.log(product);
   fetch("http://localhost:3000/api/furniture/" + product.meuble)
     .then((response) => response.json())
 
     .then(function (productList) {
-      console.log(productList);
 
       let basket = localStorage.getItem("addedProduct");
 
@@ -50,22 +47,17 @@ let sousTotal = document.querySelector("#sous-total");
 sousTotal.innerHTML += `<strong>${currency(price)}</strong>`;
 //frais de port
 let shipping = price * 0.05;
-console.log(shipping);
 let shippingValue = document.querySelector("#shipping");
 shippingValue.innerHTML += `<strong>${currency(shipping)}</strong>`;
 //TVA
 let tva = price * 0.2;
-console.log(tva);
 let tvaValue = document.querySelector("#tva");
 tvaValue.innerHTML += `<strong>${currency(tva)}</strong>`;
 //Total
 let total = price + shipping + tva;
-console.log(total);
 let totalValue = document.querySelector("#total");
 totalValue.innerHTML += `<p><strong>${currency(total)}</strong></p>`;
 localStorage.setItem("total", total);
-
-
 
 //sauvegarder des données du formulaire sur le service web
 submit.addEventListener("click", function(event){
@@ -96,18 +88,26 @@ submit.addEventListener("click", function(event){
   contact.city = inputCity.value;
   contact.email = inputEmail.value;
   console.log(contact); 
-  console.log(basket); 
+
+  //id
+  let idArray = [];
+  for (const product of basket){
+    idArray.push(product.meuble);
+  }
+  console.log(idArray);
 
 //body
-backend = JSON.stringify(contact) + JSON.stringify(basket);
-console.log(backend); 
+let body = new Object();
+body.contact = contact;
+body.products = idArray;
+console.log(body); 
 
-let commande = fetch("http://localhost:3000/api/furniture", {
+let commande = fetch("http://localhost:3000/api/furniture/order", {
   method: "POST", 
   headers: {
     "Content-Type": "application/json" 
   },
-  body: JSON.stringify(contact + basket),
+  body: JSON.stringify(body)
 });
 
 console.log(commande);

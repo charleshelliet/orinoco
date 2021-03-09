@@ -2,13 +2,11 @@
 let link = window.location.href;
 let url = new URL(link);
 let id = url.searchParams.get("id");
-console.log(id);
 
 fetch("http://localhost:3000/api/furniture/" + id)
   .then((response) => response.json())
 
   .then(function (productDetails) {
-    console.log(productDetails);
 
     //affichage dynamique du détail du produit sélectionné selon l'id
     //utilisation de innerHTML et les litéraux de gabarit (template literal)
@@ -46,30 +44,16 @@ fetch("http://localhost:3000/api/furniture/" + id)
 
     let varnishSelect = document.querySelector("#varnishSelect");
 
-    console.log(productDetails.varnish);
-
     //affichage
 
     for (const [i, varnish] of productDetails.varnish.entries()) {
       varnishSelect.innerHTML += `<option value="${i}">${varnish}</option>`;
     }
 
-    /*enregistrement du vernis choisi
-
-    varnishSelect.addEventListener("change", function(event){
-      console.log("clic vernis");
-      document.querySelector("#varnishSelect").value = this.value;
-      console.log(this.value);
-      localStorage.setItem('varnishSelect', JSON.stringify(this.value));
-    }
-    );
-    */
-
     //événement onclick ajout au panier + enregistrement localStorage de l'id du produit
 
     basketButton.addEventListener("click", function (event) {
-      //event.preventDefault()
-      console.log("YOUPI mon click fonctionne");
+      //event.preventDefault();
       //choix vernis
       let varnish = document.querySelector("#varnishSelect");
       let valueVarnish = varnish.options[varnish.selectedIndex].text;
@@ -78,7 +62,6 @@ fetch("http://localhost:3000/api/furniture/" + id)
       meubleVernis.meuble = id;
       meubleVernis.varnish = valueVarnish;
       meubleVernis.quantity = 1;
-      console.log(meubleVernis);
       let price = 0;
       //vérifier si local storage vide ou non
       if (localStorage.getItem("addedProduct") === null) {
@@ -99,15 +82,12 @@ fetch("http://localhost:3000/api/furniture/" + id)
         console.log("panier bien rempli");
         //récupérer le tableau
         idArray = JSON.parse(localStorage.getItem("addedProduct"));
-        console.log(idArray);
         //push produit dans le tableau
         idArray.push(meubleVernis);
         localStorage.setItem("addedProduct", JSON.stringify(idArray));
-        console.log(idArray);
         //ajouter le prix
         price =
           JSON.parse(localStorage.getItem("price")) + productDetails.price;
-        console.log(price);
         localStorage.setItem("price", JSON.stringify(price));
       }
     });
