@@ -63,7 +63,7 @@ localStorage.setItem("total", total);
 submit.addEventListener("click", function(event){
 
   console.log("le clic a fonctionné");
-  event.preventDefault()  
+  //event.preventDefault()  
   //Nom + Prénom
   let inputFirstname = document.querySelector("#form11");
   let inputLastname = document.querySelector("#form12");
@@ -84,7 +84,7 @@ submit.addEventListener("click", function(event){
  let contact = new Object();
   contact.firstName = inputFirstname.value;
   contact.lastName = inputLastname.value;
-  contact.adress = inputAdress.value;
+  contact.address = inputAdress.value;
   contact.city = inputCity.value;
   contact.email = inputEmail.value;
   console.log(contact); 
@@ -102,17 +102,21 @@ body.contact = contact;
 body.products = idArray;
 console.log(body); 
 
-let commande = fetch("http://localhost:3000/api/furniture/order", {
+fetch("http://localhost:3000/api/furniture/order", {
   method: "POST", 
-  headers: {
-    "Content-Type": "application/json" 
-  },
+  headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
   body: JSON.stringify(body)
-});
-
-console.log(commande);
-
 })
+
+.then((response) => response.json())
+
+.then((order) => {
+  console.log(order); 
+  orderId = order.orderId; 
+  console.log(orderId)
+  localStorage.setItem("orderId", orderId);
+ })
+});
 
 
 //envoyer et valider les données auprès du backend
@@ -130,10 +134,3 @@ console.log(commande);
  * products: [string] <-- array of product _id
  *
  */
-
-
-
-  //supprimer un article du panier
-  function remove(){
-    localStorage.removeItem("addedProduct");
-  }
