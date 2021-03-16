@@ -116,6 +116,8 @@ fetch("http://localhost:3000/api/furniture/order", {
   console.log(orderId)
   localStorage.setItem("orderId", orderId);
  })
+
+ window.location.href = 'confirmation.html';
 });
 
 
