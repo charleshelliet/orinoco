@@ -7,7 +7,6 @@ for (const product of basket) {
     .then((response) => response.json())
 
     .then(function (productList) {
-
       let basket = localStorage.getItem("addedProduct");
 
       basket = document.querySelector("#basket");
@@ -34,10 +33,7 @@ for (const product of basket) {
    <td class="border-0 align-middle"><strong>${product.quantity}</strong></td>
    <td class="border-0 align-middle"><a role="button" onclick="remove()" href="panier.html" class="text-dark"><i class="fa fa-trash"></i></a></td>
  </tr>`;
-
     });
-    
-   
 }
 
 //récupérer prix panier
@@ -60,10 +56,9 @@ totalValue.innerHTML += `<p><strong>${currency(total)}</strong></p>`;
 localStorage.setItem("total", total);
 
 //sauvegarder des données du formulaire sur le service web
-submit.addEventListener("click", function(event){
-
+submit.addEventListener("click", function (event) {
   console.log("le clic a fonctionné");
-  //event.preventDefault()  
+  //event.preventDefault()
   //Nom + Prénom
   let inputFirstname = document.querySelector("#form11");
   let inputLastname = document.querySelector("#form12");
@@ -80,46 +75,44 @@ submit.addEventListener("click", function(event){
   let textInfo = document.querySelector("#form20");
   localStorage.setItem("info", textInfo.value);
 
- //créer un objet contact
- let contact = new Object();
+  //créer un objet contact
+  let contact = new Object();
   contact.firstName = inputFirstname.value;
   contact.lastName = inputLastname.value;
   contact.address = inputAdress.value;
   contact.city = inputCity.value;
   contact.email = inputEmail.value;
-  console.log(contact); 
+  console.log(contact);
 
   //id
   let idArray = [];
-  for (const product of basket){
+  for (const product of basket) {
     idArray.push(product.meuble);
   }
   console.log(idArray);
 
-//body
-let body = new Object();
-body.contact = contact;
-body.products = idArray;
-console.log(body); 
+  //body
+  let body = new Object();
+  body.contact = contact;
+  body.products = idArray;
+  console.log(body);
 
-fetch("http://localhost:3000/api/furniture/order", {
-  method: "POST", 
-  headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-  body: JSON.stringify(body)
-})
+  fetch("http://localhost:3000/api/furniture/order", {
+    method: "POST",
+    headers: { Accept: "application/json", "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  })
+    .then((response) => response.json())
 
-.then((response) => response.json())
+    .then((order) => {
+      console.log(order);
+      orderId = order.orderId;
+      console.log(orderId);
+      localStorage.setItem("orderId", orderId);
+    });
 
-.then((order) => {
-  console.log(order); 
-  orderId = order.orderId; 
-  console.log(orderId)
-  localStorage.setItem("orderId", orderId);
- })
-
- window.location.href = 'confirmation.html';
+  window.location.href = "confirmation.html";
 });
-
 
 //envoyer et valider les données auprès du backend
 

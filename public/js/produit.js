@@ -6,7 +6,13 @@ let id = url.searchParams.get("id");
 fetch("http://localhost:3000/api/furniture/" + id)
   .then((response) => response.json())
 
-  .then(function (productDetails) {
+  .then((produit) => affichageDetails(produit))
+
+  .catch(function (error) {
+    console.log(error);
+  });
+
+  function affichageDetails(productDetails) {
 
     //affichage dynamique du détail du produit sélectionné selon l'id
     //utilisation de innerHTML et les litéraux de gabarit (template literal)
@@ -91,4 +97,4 @@ fetch("http://localhost:3000/api/furniture/" + id)
         localStorage.setItem("price", JSON.stringify(price));
       }
     });
-  });
+  }
