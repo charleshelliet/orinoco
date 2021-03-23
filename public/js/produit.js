@@ -4,6 +4,7 @@ let url = new URL(link);
 let id = url.searchParams.get("id");
 
 fetch("http://localhost:3000/api/furniture/" + id)
+  
   .then((response) => response.json())
 
   .then((produit) => affichageDetails(produit))

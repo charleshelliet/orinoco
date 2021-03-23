@@ -111,7 +111,6 @@ submit.addEventListener("click", function (event) {
       localStorage.setItem("orderId", orderId);
     });
 
-  window.location.href = "confirmation.html";
 });
 
 //envoyer et valider les données auprès du backend
