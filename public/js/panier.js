@@ -6,33 +6,8 @@ for (const product of basket) {
   fetch("http://localhost:3000/api/furniture/" + product.meuble)
     .then((response) => response.json())
 
-    .then(function (productList) {
-      let basket = localStorage.getItem("addedProduct");
-
-      basket = document.querySelector("#basket");
-      basket.innerHTML += `<tr>
-   <th scope="row" class="border-0">
-     <div class="p-2">
-       <img src="${productList.imageUrl}" alt="${
-        productList.name
-      }" width="70" class="img-fluid rounded shadow-sm">
-       <div class="ml-3 d-inline-block align-middle">
-         <h5 class="mb-0"> <a href="produit.html?id=${
-           productList._id
-         }" class="text-dark d-inline-block align-middle">${
-        productList.name
-      }</a></h5><span class="text-muted font-weight-normal font-italic d-block">Vernis: ${
-        product.varnish
-      }</span>
-       </div>
-     </div>
-   </th>
-   <td class="border-0 align-middle"><strong>${currency(
-     productList.price
-   )}</strong></td>
-   <td class="border-0 align-middle"><strong>${product.quantity}</strong></td>
-   <td class="border-0 align-middle"><a role="button" onclick="remove()" href="panier.html" class="text-dark"><i class="fa fa-trash"></i></a></td>
- </tr>`;
+    .then(function (produit) {
+      displayProduct(produit, product.varnish, product.quantity);
     });
 }
 
@@ -57,8 +32,7 @@ localStorage.setItem("total", total);
 
 //sauvegarder des données du formulaire sur le service web
 submit.addEventListener("click", function (event) {
-  console.log("le clic a fonctionné");
-  //event.preventDefault()
+  event.preventDefault();
   //Nom + Prénom
   let inputFirstname = document.querySelector("#form11");
   let inputLastname = document.querySelector("#form12");
@@ -82,20 +56,17 @@ submit.addEventListener("click", function (event) {
   contact.address = inputAdress.value;
   contact.city = inputCity.value;
   contact.email = inputEmail.value;
-  console.log(contact);
 
   //id
   let idArray = [];
   for (const product of basket) {
     idArray.push(product.meuble);
   }
-  console.log(idArray);
 
   //body
   let body = new Object();
   body.contact = contact;
   body.products = idArray;
-  console.log(body);
 
   fetch("http://localhost:3000/api/furniture/order", {
     method: "POST",
@@ -105,13 +76,38 @@ submit.addEventListener("click", function (event) {
     .then((response) => response.json())
 
     .then((order) => {
-      console.log(order);
       orderId = order.orderId;
-      console.log(orderId);
       localStorage.setItem("orderId", orderId);
+      document.location.href = "confirmation.html?orderId=" + orderId;
     });
-
 });
+
+function displayProduct(productList, vernis, quantity) {
+  let basket = localStorage.getItem("addedProduct");
+
+  basket = document.querySelector("#basket");
+  basket.innerHTML += `<tr>
+<th scope="row" class="border-0">
+ <div class="p-2">
+   <img src="${productList.imageUrl}" alt="${
+    productList.name
+  }" width="70" class="img-fluid rounded shadow-sm">
+   <div class="ml-3 d-inline-block align-middle">
+     <h5 class="mb-0"> <a href="produit.html?id=${
+       productList._id
+     }" class="text-dark d-inline-block align-middle">${
+    productList.name
+  }</a></h5><span class="text-muted font-weight-normal font-italic d-block">Vernis: ${vernis}</span>
+   </div>
+ </div>
+</th>
+<td class="border-0 align-middle"><strong>${currency(
+    productList.price
+  )}</strong></td>
+<td class="border-0 align-middle"><strong>${quantity}</strong></td>
+<td class="border-0 align-middle"><a role="button" onclick="remove()" href="panier.html" class="text-dark"><i class="fa fa-trash"></i></a></td>
+</tr>`;
+}
 
 //envoyer et valider les données auprès du backend
 

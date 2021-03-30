@@ -13,4 +13,4 @@ order.innerHTML += `<p class="lead">Vous recevrez prochainement sur <strong>${em
 <p>Information complémentaire : <strong>${info}</strong></p>`;
 
 //vider la panier une fois la commande passée
-//localStorage.clear();
+localStorage.clear();
