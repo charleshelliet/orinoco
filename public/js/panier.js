@@ -1,5 +1,13 @@
+//vérifier si le panier est vide
+let basket ="";
+if (localStorage.getItem("addedProduct") === null) {
+  //tableau vide
+  console.log("rien dans le panier");
+}
+else {
 //récupération objet contenu panier (id + vernis)
-let basket = JSON.parse(localStorage.getItem("addedProduct"));
+basket = JSON.parse(localStorage.getItem("addedProduct"));
+}
 
 //boucle qui affiche les id de chaque produit
 for (const product of basket) {
@@ -33,18 +41,74 @@ localStorage.setItem("total", total);
 //sauvegarder des données du formulaire sur le service web
 submit.addEventListener("click", function (event) {
   event.preventDefault();
+  //le panier est vide
+  if (localStorage.getItem("addedProduct") === null) {
+    alert("Votre panier est vide");
+  }
+  //le panier est rempli (validation des données)
+  else {
   //Nom + Prénom
   let inputFirstname = document.querySelector("#form11");
+  if (inputFirstname.value == "")                                  
+    { 
+        alert("Mettez votre prénom"); 
+        inputFirstname.focus(); 
+        return false; 
+    }
   let inputLastname = document.querySelector("#form12");
+  if (inputLastname.value == "")                                  
+    { 
+        alert("Indiquez votre nom"); 
+        inputLastname.focus(); 
+        return false; 
+    }
   localStorage.setItem("name", inputFirstname.value + inputLastname.value);
+  //Adresse
   let inputAdress = document.querySelector("#form14");
+  if (inputAdress.value == "")                                  
+    { 
+        alert("Indiquez votre adresse"); 
+        inputAdress.focus(); 
+        return false; 
+    }
   let inputZip = document.querySelector("#form16");
+  if (inputZip.value == "")                                  
+    { 
+        alert("Indiquez votre code postal"); 
+        inputZip.focus(); 
+        return false; 
+    }
   let inputCity = document.querySelector("#form17");
+  if (inputCity.value == "")                                  
+    { 
+        alert("Indiquez votre ville"); 
+        inputCity.focus(); 
+        return false; 
+    }
   localStorage.setItem(
     "adress",
     inputAdress.value + " " + inputZip.value + " " + inputCity.value
   );
+  //validation email
   let inputEmail = document.querySelector("#form19");
+  if (inputEmail.value == "")                                  
+    { 
+        alert("Indiquez votre email"); 
+        inputEmail.focus(); 
+        return false; 
+    }
+    if (inputEmail.value.indexOf("@", 0) < 0)                 
+    { 
+        alert("Rentrez une adresse email valide (ex : orinoco.boutique@email.com)"); 
+        inputEmail.focus(); 
+        return false; 
+    }    
+    if (inputEmail.value.indexOf(".", 0) < 0)                 
+    { 
+        alert("Rentrez une adresse email valide (orinoco.boutique@email.com)"); 
+        inputEmail.focus(); 
+        return false; 
+    }     
   localStorage.setItem("email", inputEmail.value);
   let textInfo = document.querySelector("#form20");
   localStorage.setItem("info", textInfo.value);
@@ -80,6 +144,7 @@ submit.addEventListener("click", function (event) {
       localStorage.setItem("orderId", orderId);
       document.location.href = "confirmation.html?orderId=" + orderId;
     });
+  }
 });
 
 function displayProduct(productList, vernis, quantity) {
