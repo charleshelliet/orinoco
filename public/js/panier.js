@@ -132,6 +132,7 @@ submit.addEventListener("click", function (event) {
   body.contact = contact;
   body.products = idArray;
 
+  //méthode POST - renvoi des données au backend et génération du n° de commande
   fetch("http://localhost:3000/api/furniture/order", {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
