@@ -13,11 +13,11 @@ fetch("http://localhost:3000/api/furniture/" + id)
   });
 
 function affichageDetails(productDetails) {
-  //affichage dynamique du détail du produit sélectionné selon l'id
-  //utilisation de innerHTML et les litéraux de gabarit (template literal)
-
+//affichage dynamique du détail du produit sélectionné selon l'id
+  
   let productSelection = document.querySelector("#productSelection");
 
+  //utilisation de innerHTML et les litéraux de gabarit (template literal)
   productSelection.innerHTML += `<div class="card mt-4">
     <img class="card-img-top img-fluid" src="${productDetails.imageUrl}" alt="${
     productDetails.name
@@ -81,7 +81,7 @@ function affichageDetails(productDetails) {
       price = productDetails.price;
       localStorage.setItem("price", JSON.stringify(price));
     } else {
-      //vérifier si un produit (+ vernis) parmi le tableau existe
+      //vérifier si un produit parmi le tableau existe
       //tableau rempli
       console.log("panier bien rempli");
       //récupérer le tableau

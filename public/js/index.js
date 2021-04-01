@@ -16,13 +16,14 @@ fetch("http://localhost:3000/api/furniture")
     console.log(error);
   });
 
+  
 function affichageProduits(productList) {
-  //affichage des produits sur la page d'accueil
-  //boucle sur tous les produits
-  //la boucle contient des éléments html avec les données dynamiques
-  //utilisation de innerHTML et les litéraux de gabarit (template literal)
+//Fonction affichage des produits sur la page d'accueil 
+
   let containerProducts = document.querySelector("#containerProducts");
 
+  //boucle sur tous les produits (contient des éléments html avec les données dynamiques)
+  //utilisation de innerHTML et les litéraux de gabarit (template literal)
   for (const furniture of productList) {
     containerProducts.innerHTML += `<div class="col-lg-4 col-md-6 mb-4">
       <div class="card h-100">
